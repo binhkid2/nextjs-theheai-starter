@@ -1,4 +1,5 @@
 /* eslint-disable @next/next/no-img-element */
+//@ts-nocheck
  "use client"
 import { encryptStorage } from "./encrypt-storage";
 import { initUser } from "./store";

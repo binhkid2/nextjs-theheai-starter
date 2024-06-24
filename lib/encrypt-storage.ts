@@ -1,11 +1,17 @@
 // src/lib/encryptStorage.js
-import { EncryptStorage } from 'encrypt-storage';
-import { initUser } from './store';
+let encryptStorage = null;
+if (typeof window !== 'undefined') {
+  const { EncryptStorage } = require('encrypt-storage');
+  const secretKey = "binh_dep_trai"; //FOR DEMO ONLY
+  encryptStorage = new EncryptStorage(secretKey);
+}
 
-// Import the environment variable
- const secretKey="binh_dep_trai"  //FOR DEMO ONLY
+export { encryptStorage };
 
-export const encryptStorage = new EncryptStorage(secretKey);
+ 
+
+ 
+
 // Example usage:
 // encryptStorage.setItem('theheai-userInfo', userInfo);
 //export const userInStorage =  encryptStorage.getItem('theheai-userInfo')  || initUser;//use this in saas

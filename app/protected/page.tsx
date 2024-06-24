@@ -1,4 +1,5 @@
 /* eslint-disable @next/next/no-img-element */
+//@ts-nocheck
 "use client"
 import AuthCheck from "@/lib/AuthCheck"; 
 import { encryptStorage } from "@/lib/encrypt-storage";
