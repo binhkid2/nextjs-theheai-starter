@@ -6,7 +6,11 @@ import { encryptStorage } from "@/lib/encrypt-storage";
 import { initUser } from "@/lib/store";
 
 export default function Protected() {
-  let user =  encryptStorage.getItem('theheai-userInfo')  || initUser;
+  let user = initUser;
+  if(encryptStorage){
+     user =  encryptStorage.getItem('theheai-userInfo')  
+  }
+ 
   return (
     <>
     <AuthCheck>

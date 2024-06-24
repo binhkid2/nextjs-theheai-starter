@@ -11,8 +11,10 @@ interface DashboardLayoutProps {
   children: React.ReactNode;
 }
 export default function AuthCheckContent({ children }: DashboardLayoutProps) { 
-    let user =  encryptStorage.getItem('theheai-userInfo')  || initUser;
-   
+  let user = initUser;
+  if(encryptStorage){
+     user =  encryptStorage.getItem('theheai-userInfo')  
+  }
    
   return (
     <>
