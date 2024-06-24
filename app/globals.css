@@ -1,0 +1,32 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --base-font-size: 12px; /* Default base font size */
+}
+
+/* Base font size for all elements */
+body {
+  font-size: var(--base-font-size);
+}
+
+/* Headings */
+h1 {
+  font-size: calc(var(--base-font-size) + 5px); 
+  font-weight: bold;
+}
+
+/* Medium screens (e.g., tablets) */
+@media (min-width: 768px) {
+  :root {
+    --base-font-size: 14px; /* Base font size for medium screens */
+  }
+}
+
+/* Large screens (e.g., desktops) */
+@media (min-width: 1024px) {
+  :root {
+    --base-font-size: 16px; /* Base font size for large screens */
+  }
+}
