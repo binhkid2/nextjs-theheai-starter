@@ -1,33 +1,25 @@
-/* eslint-disable @next/next/no-img-element */
-//@ts-nocheck
- "use client"
-import { encryptStorage } from "./encrypt-storage";
-import { initUser } from "./store";
+ 
+  
+import { useAtom } from 'jotai';
 import './AuthCheck.scss'
 import ButtonLogin from "./ButtonLogin";
-
- 
-interface DashboardLayoutProps {
-  children: React.ReactNode;
-}
-export default function AuthCheckContent({ children }: DashboardLayoutProps) { 
-  let user = initUser;
-  if(encryptStorage){
-     user =  encryptStorage.getItem('theheai-userInfo')  
-  }
-   
+import { isAuthenticatedStore } from './store';
+//@ts-ignore
+  
+export default  function AuthCheck({children}) { 
+  const [isAuthenticated, ] = useAtom(isAuthenticatedStore);
   return (
     <>
-     {user.zaloId !== "" ? (
-    <>{children}</>
+     {!isAuthenticated ? (
+   <div className="container-scss">
+   <div className="top-scss"></div>
+   <div className="bottom-scss"></div>
+   <div className="center-scss">
+  <ButtonLogin/>
+   </div>
+ </div>
   ) : (
-    <div className="container-scss">
-      <div className="top-scss"></div>
-      <div className="bottom-scss"></div>
-      <div className="center-scss">
-     <ButtonLogin/>
-      </div>
-    </div>
+    <>{children}</>
   )}
     </>
   );
