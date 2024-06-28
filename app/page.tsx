@@ -8,21 +8,18 @@ import axios from 'axios';
 import HomeContent from '@/lib/components/HomeContent';
 import LoadingOverlay from '@/lib/components/LoadingOverlay';
 import Page404 from '@/lib/components/Page404';
-
 export default function Home() {
   const [isAuthenticated, setIsAuthenticated] = useAtom(isAuthenticatedStore);
   const [, setUserInfo] = useAtom(userInfoStore);
   const [isLoading, setIsLoading] = useState(false);
   const searchParams = useSearchParams()
   const token = searchParams.get('token')
-
   useEffect(() => {
     const fetchData = async () => {
       if (!token) {
         toast.error('No token provided! ❌❌❌');
         return;
       }
-      
       try {
         setIsLoading(true);
         // Fetch user info using token 
@@ -38,10 +35,8 @@ export default function Home() {
         toast.error('Failed to get user information');
       }
     };
-
     fetchData();
   }, [token, setIsAuthenticated, setUserInfo]); // Include dependencies in the dependency array
-
   return (
    <>
     <Toaster position="bottom-center" reverseOrder={false} />

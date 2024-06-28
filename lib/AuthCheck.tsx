@@ -1,5 +1,5 @@
  
-  
+  'use client'
 import { useAtom } from 'jotai';
 import './AuthCheck.scss'
 import ButtonLogin from "./ButtonLogin";

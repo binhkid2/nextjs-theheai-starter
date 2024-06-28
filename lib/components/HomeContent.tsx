@@ -2,7 +2,6 @@
 "use client"
 import { useAtom } from "jotai";
 import { userInfoStore } from "../store";
-
 export default function HomeContent() {
     const [userInfo, ] = useAtom(userInfoStore);
   return (
