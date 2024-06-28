@@ -15,6 +15,7 @@ export const initUser: UserType = {
   proDayLeft: 0,
   zaloId: "",
 };
-import { atom } from 'jotai'
+import { get } from 'http';
+import { atom, createStore } from 'jotai'
 export const userInfoStore  = atom<UserType>(initUser)
 export const isAuthenticatedStore  = atom<boolean>(false)

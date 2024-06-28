@@ -1,7 +1,7 @@
 "use client"
 import toast, { Toaster } from 'react-hot-toast';
 import { isAuthenticatedStore, userInfoStore } from "@/lib/store";
-import { useAtom } from "jotai";
+import { createStore, useAtom } from "jotai";
 import { useSearchParams } from 'next/navigation'
 import { useEffect, useState } from "react";
 import axios from 'axios';
@@ -14,6 +14,32 @@ export default function Home() {
   const [isLoading, setIsLoading] = useState(false);
   const searchParams = useSearchParams()
   const token = searchParams.get('token')
+
+  
+  const myStore = createStore();
+  useEffect(() => {
+    // Subscribe to changes in userInfoStore
+    const unsubUserInfo = myStore.sub(userInfoStore, () => {
+      const newUserInfo = myStore.get(userInfoStore);
+      console.log('userInfoStore value is changed to', newUserInfo);
+      setUserInfo(newUserInfo);
+    });
+
+    // Subscribe to changes in isAuthenticatedStore
+    const unsubIsAuthenticated = myStore.sub(isAuthenticatedStore, () => {
+      const newIsAuthenticated = myStore.get(isAuthenticatedStore);
+      console.log('isAuthenticatedStore value is changed to', newIsAuthenticated);
+      setIsAuthenticated(newIsAuthenticated);
+    });
+
+    // Clean up subscriptions on unmount
+    return () => {
+      unsubUserInfo();
+      unsubIsAuthenticated();
+    };
+  }, [myStore, setUserInfo, setIsAuthenticated]);
+
+
   useEffect(() => {
     const fetchData = async () => {
       if (!token) {
