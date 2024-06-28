@@ -8,7 +8,7 @@ import { useEffect } from 'react';
 //@ts-ignore
   
 export default  function AuthCheck({children}) { 
-  const [isAuthenticated,setIsAuthenticated ] = useAtom(isAuthenticatedStore);
+  const [isAuthenticated, ] = useAtom(isAuthenticatedStore);
   return (
     <>
      {!isAuthenticated ? (
