@@ -1,7 +1,7 @@
 "use client"
 import toast, { Toaster } from 'react-hot-toast';
 import { isAuthenticatedStore, userInfoStore } from "@/lib/store";
-import { createStore, useAtom } from "jotai";
+import { atom, createStore, useAtom } from "jotai";
 import { useSearchParams } from 'next/navigation'
 import { useEffect, useState } from "react";
 import axios from 'axios';
@@ -31,6 +31,13 @@ export default function Home() {
         // Update global state
         setUserInfo(userResponse);
         setIsAuthenticated(true);
+        const update = atom(null, (get, set) => {
+          const r = get(userInfoStore)  ;
+          set(userInfoStore, r);
+          const t = get(isAuthenticatedStore)  ;
+          set(isAuthenticatedStore, t);
+        })
+        update
         setIsLoading(false);
       } catch (error) {
         setIsLoading(false);
